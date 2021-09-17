@@ -16,8 +16,8 @@ class SignOut extends Component {
           variant: 'success'
         })
       )
-      .finally(() => history.push('/'))
       .finally(() => clearUser())
+      .finally(() => history.push('/'))
   }
 
   render () {
