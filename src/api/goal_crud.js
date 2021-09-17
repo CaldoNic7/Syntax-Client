@@ -62,3 +62,13 @@ export const updateGoal = (user, goalId, goalData) => {
     }
   })
 }
+
+export const deleteGoal = (user, goalId) => {
+  return axios({
+    method: 'DELETE',
+    url: apiUrl + '/goals/' + goalId,
+    headers: {
+      Authorization: `TOKEN ${user.token}`
+    }
+  })
+}
