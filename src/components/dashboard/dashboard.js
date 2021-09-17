@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { indexUserGoals, showGoal, updateGoal } from '../../api/goal_crud'
+import { indexUserGoals, showGoal, updateGoal, deleteGoal } from '../../api/goal_crud'
 
 // import Form from 'react-bootstrap/Form'
 import { Button, Card } from 'react-bootstrap'
@@ -60,6 +60,21 @@ class Dashboard extends React.Component {
       .catch(error => {
         msgAlert({ heading: 'Goal update failed', message: 'Something went wrong: ' + error.message, variant: 'danger' })
       })
+  }
+
+  delete = (goalId) => {
+    const { user, msgAlert } = this.props
+    deleteGoal(user, goalId)
+      .then(() => {
+        const newGoals = Object.assign({}, this.state)
+        newGoals.goals = newGoals.goals.filter(goal => goal.id !== goalId)
+        this.setState({
+          goals: newGoals.goals,
+          goalToUpdate: null
+        })
+      })
+      .then(() => msgAlert({ heading: 'Delete success', message: 'Chord deleted', variant: 'success' }))
+      .catch(err => msgAlert({ heading: 'Delete failed', message: 'Something went wrong: ' + err.message, variant: 'danger' }))
   }
 
   render () {
@@ -149,10 +164,8 @@ class Dashboard extends React.Component {
                   /><p>.</p>
                 </Form.Group>
                 <div style={{ marginLeft: '12px' }}>
-                  <Button
-                    type='submit'
-                    style={{ marginTop: '11px' }}>Submit
-                  </Button>
+                  <Button type='submit' style={{ marginTop: '11px' }}>Submit</Button>
+                  <Button onClick={() => this.delete(goal.id)} style={{ marginRight: '6px' }}>Delete</Button>
                 </div>
               </Form>
             </Card>
