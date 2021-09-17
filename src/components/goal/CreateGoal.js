@@ -43,7 +43,6 @@ class CreateGoal extends React.Component {
   }
 
   render () {
-    // eslint-disable-next-line camelcase
     const { name, characters, language, date, time, measurement, frequency } = this.state.goal
     return (
       <>
