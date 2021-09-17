@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { indexUserGoals, showGoal, updateGoal, deleteGoal } from '../../api/goal_crud'
+import moment from 'moment'
 
 // import Form from 'react-bootstrap/Form'
 import { Button, Card } from 'react-bootstrap'
@@ -77,6 +78,11 @@ class Dashboard extends React.Component {
       .catch(err => msgAlert({ heading: 'Delete failed', message: 'Something went wrong: ' + err.message, variant: 'danger' }))
   }
 
+  daysRemaining = (goal) => {
+    const dueDate = moment(goal.date)
+    return moment(dueDate).endOf('day').fromNow()
+  }
+
   render () {
     const { goals } = this.state
     if (this.state.goals === null) {
@@ -93,7 +99,7 @@ class Dashboard extends React.Component {
         if (this.state.goalToUpdate !== null && goal.id === this.state.goalToUpdate.id) {
           goalsArray.pop(goal)
           // eslint-disable-next-line camelcase
-          const { name, chars_per_min, language, target_date, practice_num, measurement, frequency } = this.state.goalToUpdate
+          const { name, characters, language, date, time, measurement, frequency } = this.state.goalToUpdate
           updateGoalJsx = (
             <Card>
               <Form onSubmit={this.handleSubmit}>
@@ -105,13 +111,12 @@ class Dashboard extends React.Component {
                     onChange={this.handleChange}
                   />
                 </Form.Group>
-                <Form.Group controlId='chars_per_min' style={{ marginTop: '9px' }}>
+                <Form.Group controlId='characters' style={{ marginTop: '9px' }}>
                   <p>I want to type </p>
                   <Form.Control
                     required
-                    name='chars_per_min'
-                    // eslint-disable-next-line camelcase
-                    value={chars_per_min}
+                    name='characters'
+                    value={characters}
                     onChange={this.handleChange}
                   />
                 </Form.Group>
@@ -124,23 +129,21 @@ class Dashboard extends React.Component {
                     onChange={this.handleChange}
                   />
                 </Form.Group>
-                <Form.Group controlId='target_date' style={{ marginTop: '9px' }}>
+                <Form.Group controlId='date' style={{ marginTop: '9px' }}>
                   <p>, by</p>
                   <Form.Control
                     required
-                    name='target_date'
-                    // eslint-disable-next-line camelcase
-                    value={target_date}
+                    name='date'
+                    value={date}
                     onChange={this.handleChange}
                   /><p>.</p>
                 </Form.Group>
-                <Form.Group controlId='practice_num' style={{ marginTop: '9px' }}>
+                <Form.Group controlId='time' style={{ marginTop: '9px' }}>
                   <p>I will achieve this goal by practicing</p>
                   <Form.Control
                     required
-                    name='practice_num'
-                    // eslint-disable-next-line camelcase
-                    value={practice_num}
+                    name='time'
+                    value={time}
                     onChange={this.handleChange}
                   />
                 </Form.Group>
@@ -175,20 +178,25 @@ class Dashboard extends React.Component {
       goalsJsx = goalsArray.map((goal) => (
         <Card key={goal.id} onClick={() => this.show(goal)}>
           <Card.Body>
-            <Card.Title >{goal.name}</Card.Title>
-            <Card.Text>I want to type {goal.char_per_min} words per minute in {goal.language}, by {goal.target_date}. I will achieve this goal by practicing {goal.practice_num} {goal.measurement} every {goal.frequency}.</Card.Text>
+            <div className="d-flex justify-content-between">
+              <Card.Title>{goal.name}: {goal.language}</Card.Title>
+              <Card.Title>Due {this.daysRemaining(goal)}.</Card.Title>
+            </div>
+            {/* <Card.Text>I want to type {goal.characters} words per minute in {goal.language}, by {goal.date}. I will achieve this goal by practicing {goal.time} {goal.measurement} every {goal.frequency}.</Card.Text> */}
           </Card.Body>
         </Card>
       ))
     }
     return (
       <>
-        <h1>display language icons here</h1>
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-          <Button onClick={() => this.props.history.push('/goal-create/')}>Set Goal</Button>
-          <Button onClick={() => this.props.history.push('/change-pw/')}>Change Password</Button>
-          <Button onClick={() => this.props.history.push('/sign-out/')}>Sign Out</Button>
-        </div>
+        {/* <h1>display language icons here</h1> */}
+        <Card>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+            <Button style={{ margin: '5px' }} onClick={() => this.props.history.push('/goal-create/')}>Set Goal</Button>
+            <Button style={{ margin: '5px' }} onClick={() => this.props.history.push('/change-pw/')}>Change Password</Button>
+            <Button style={{ margin: '5px' }} onClick={() => this.props.history.push('/sign-out/')}>Sign Out</Button>
+          </div>
+        </Card>
         <div>
           {updateGoalJsx}
           {goalsJsx}

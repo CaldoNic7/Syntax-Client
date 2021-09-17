@@ -7,11 +7,11 @@
 Don't believe me? Give it a try HERE. Simply sign up (using a fake email is recommended), create a goal, then start practicing to see how fast you can level up and achieve your goals.
 
 #
-## Technologies
 
-If you are interested in seeing how I created this app you can check out the code for my front end client HERE or my back end API HERE and it's corresponding git hub repo HERE. Please leave a comment and let me know what you think!
+If you are interested in seeing how I created this app you can check out the code for my front end client [HERE](https://github.com/CaldoNic7/Syntax-Client/tree/dev) or my back end API HERE and it's corresponding git hub repo [HERE](https://github.com/CaldoNic7/Syntax-back-end). Please leave a comment and let me know what you think!
 
 #
+## Technologies
 
 Technogologies I used to build this SPA include...
 
@@ -28,6 +28,13 @@ Technogologies I used to build this SPA include...
  + Django
 
  + PostSQL
+
+### Dependencies
+
+[momentjs](https://momentjs.com/)
+```
+npm install moment --save
+```
 
 #
 
@@ -58,7 +65,18 @@ Technogologies I used to build this SPA include...
 3. The ability to CRUD on 'SMART' goals quickly and easily.
 
 #
-
+## Outstanding Tasks
+Here are some of the things I plan to tackle as I continue to work on developing this app...
+  * Styling
+  * Game Play
+  * adding a username
+  * profile with picture
+  * Leader Board
+  * Social interaction via comments and a chat function
+  * User vs User Challenges
+  * Trivia
+  * Practice Problems
+  
 ## Wire Frames
 ### Home when a user is not signed in
 

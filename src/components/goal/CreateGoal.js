@@ -12,10 +12,10 @@ class CreateGoal extends React.Component {
     this.state = {
       goal: {
         name: 'Goal 1',
-        chars_per_min: '60',
+        characters: '60',
         language: 'JavaScript',
-        target_date: '2022-05-05',
-        practice_num: '60',
+        date: '2022-05-05',
+        time: '60',
         measurement: 'min',
         frequency: 'day'
       }
@@ -45,7 +45,7 @@ class CreateGoal extends React.Component {
 
   render () {
     // eslint-disable-next-line camelcase
-    const { name, chars_per_min, language, target_date, practice_num, measurement, frequency } = this.state.goal
+    const { name, characters, language, date, time, measurement, frequency } = this.state.goal
     return (
       <>
         <div>
@@ -61,13 +61,13 @@ class CreateGoal extends React.Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Form.Group controlId='chars_per_min' style={{ marginTop: '9px' }}>
+            <Form.Group controlId='characters' style={{ marginTop: '9px' }}>
               <p>I want to type </p>
               <Form.Control
                 required
-                name='chars_per_min'
+                name='characters'
                 // eslint-disable-next-line camelcase
-                value={chars_per_min}
+                value={characters}
                 onChange={this.handleChange}
               />
             </Form.Group>
@@ -80,23 +80,23 @@ class CreateGoal extends React.Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Form.Group controlId='target_date' style={{ marginTop: '9px' }}>
+            <Form.Group controlId='date' style={{ marginTop: '9px' }}>
               <p>, by</p>
               <Form.Control
                 required
-                name='target_date'
+                name='date'
                 // eslint-disable-next-line camelcase
-                value={target_date}
+                value={date}
                 onChange={this.handleChange}
               /><p>.</p>
             </Form.Group>
-            <Form.Group controlId='practice_num' style={{ marginTop: '9px' }}>
+            <Form.Group controlId='time' style={{ marginTop: '9px' }}>
               <p>I will achieve this goal by practicing</p>
               <Form.Control
                 required
-                name='practice_num'
+                name='time'
                 // eslint-disable-next-line camelcase
-                value={practice_num}
+                value={time}
                 onChange={this.handleChange}
               />
             </Form.Group>

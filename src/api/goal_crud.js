@@ -11,10 +11,10 @@ export const createGoal = (user, goalData) => {
     data: {
       goal: {
         name: goalData.name,
-        chars_per_min: goalData.chars_per_min,
+        characters: goalData.characters,
         language: goalData.language,
-        target_date: goalData.target_date,
-        practice_num: goalData.practice_num,
+        date: goalData.date,
+        time: goalData.time,
         measurement: goalData.measurement,
         frequency: goalData.frequency
       }
@@ -52,10 +52,10 @@ export const updateGoal = (user, goalId, goalData) => {
     data: {
       goal: {
         name: goalData.name,
-        chars_per_min: goalData.chars_per_min,
+        characters: goalData.characters,
         language: goalData.language,
-        target_date: goalData.target_date,
-        practice_num: goalData.practice_num,
+        date: goalData.date,
+        time: goalData.time,
         measurement: goalData.measurement,
         frequency: goalData.frequency
       }
