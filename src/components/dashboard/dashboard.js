@@ -19,10 +19,12 @@ class Dashboard extends React.Component {
 
   componentDidMount () {
     const { user, msgAlert } = this.props
-    indexUserGoals(user)
-      .then(res => this.setState({ goals: res.data.goals }))
-      .then(() => msgAlert({ heading: 'Success', message: 'Here are your goals', variant: 'success' }))
-      .catch(err => msgAlert({ heading: 'Index failed', message: 'Something went wrong: ' + err.message, variant: 'danger' }))
+    if (user !== null) {
+      indexUserGoals(user)
+        .then(res => this.setState({ goals: res.data.goals }))
+        .then(() => msgAlert({ heading: 'Success', message: 'Here are your goals', variant: 'success' }))
+        .catch(err => msgAlert({ heading: 'Index failed', message: 'Something went wrong: ' + err.message, variant: 'danger' }))
+    }
   }
 
   show = (goal) => {
@@ -45,7 +47,6 @@ class Dashboard extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const goal = this.state.goalToUpdate
-    console.log('this is the goal inside of handleSubmit', goal)
     const { user, msgAlert } = this.props
     updateGoal(user, goal.id, goal)
       .then(() => {
@@ -98,7 +99,6 @@ class Dashboard extends React.Component {
         goalsArray.push(goal)
         if (this.state.goalToUpdate !== null && goal.id === this.state.goalToUpdate.id) {
           goalsArray.pop(goal)
-          // eslint-disable-next-line camelcase
           const { name, characters, language, date, time, measurement, frequency } = this.state.goalToUpdate
           updateGoalJsx = (
             <Card>

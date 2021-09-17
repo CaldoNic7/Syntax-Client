@@ -34,7 +34,6 @@ class CreateGoal extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log(this.state.goal)
     const { user, msgAlert, history } = this.props
     createGoal(user, this.state.goal)
       .then(res => history.push('/'))
