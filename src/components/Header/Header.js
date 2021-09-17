@@ -4,25 +4,24 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Link, NavLink } from 'react-router-dom'
 
 const authenticatedOptions = (
-  <>
-    <NavLink exact to='/' className='nav-link'>Dashboard</NavLink>
-    {/* <NavLink to='/change-pw' className='nav-link'>Change Password</NavLink> */}
-    {/* <NavLink to='/sign-out/' className='nav-link'>Sign Out</NavLink> */}
-  </>
+  <Fragment>
+    <NavLink to='/change-password' className='nav-link'>Change Password</NavLink>
+    <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
+  </Fragment>
 )
 
 const unauthenticatedOptions = (
-  <>
-    <NavLink to='/sign-up/' className='nav-link'>Sign Up</NavLink>
-    <NavLink to='/sign-in/' className='nav-link'>Sign In</NavLink>
-  </>
+  <Fragment>
+    <NavLink to='/sign-up' className='nav-link'>Sign Up</NavLink>
+    <NavLink to='/sign-in' className='nav-link'>Sign In</NavLink>
+  </Fragment>
 )
 
-// const alwaysOptions = (
-//   <>
-//     <NavLink exact to='/goals/' className='nav-link'>Dashboard</NavLink>
-//   </>
-// )
+const alwaysOptions = (
+  <Fragment>
+    <NavLink exact to='/' className='nav-link'>Home</NavLink>
+  </Fragment>
+)
 
 const Header = ({ user }) => (
   <Navbar bg='primary' variant='dark' expand='md'>
@@ -32,7 +31,10 @@ const Header = ({ user }) => (
     <Navbar.Toggle aria-controls='basic-navbar-nav' />
     <Navbar.Collapse id='basic-navbar-nav'>
       <Nav className='ml-auto'>
-        {/* {alwaysOptions} */}
+        {user && (
+          <span className='navbar-text mr-2'>Welcome, {user.email}</span>
+        )}
+        {alwaysOptions}
         {user ? authenticatedOptions : unauthenticatedOptions}
       </Nav>
     </Navbar.Collapse>
