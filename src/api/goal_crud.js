@@ -35,7 +35,7 @@ export const indexUserGoals = user => {
 export const showGoal = (user, goalId) => {
   return axios({
     method: 'GET',
-    url: apiUrl + '/goals/' + goalId,
+    url: apiUrl + `/goals/${goalId}/`,
     headers: {
       Authorization: `TOKEN ${user.token}`
     }

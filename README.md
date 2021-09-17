@@ -13,7 +13,7 @@ If you are interested in seeing how I created this app you can check out the cod
 #
 ## Technologies
 
-Technogologies I used to build this SPA include...
+Technologies I used to build this SPA include...
 
  + JavaScript
 
@@ -112,29 +112,29 @@ Here are some of the things I plan to tackle as I continue to work on developing
 
 #
 
-## Resources and Entity Relationship Diagrams (ERD)
-### Resources
-#### User
-    user: {
-     email: {
-       type: String,
-       required: true
-     },
-     hashedPassword: {
-       type: String
-       required: true
-     },
-     username: {
-       type: String,
-       unique: true
-     } 
-    }
-
-#### Goals
-
-
+Entity Relationship Diagrams (ERD) and API Routes
 ### ERD
 ![](public/images/ERD.png)
+### API Routes
+
+User Routes
+| NAME         | URL       | Verb | AUTHENTICATED |          Description             |
+|:------------:|:---------:|:----:|:-------------:|:--------------------------------:|
+|signUp        |/sign-up/  |POST  |      NO       | creates new user                 |
+|signIn        |/sign-in/  |POST  |      NO       | signs user in and creates token  |
+|signOut       |/sing-out/ |DELETE|      YES      | signs user out and deletes token |
+|changePassword|/change-pw/|PATCH |      YES      | changes user password            | 
+
+Goal Routes
+| NAME          | URL            | Verb  |          Description             |
+|:-------------:|:--------------:|:-----:|:--------------------------------:|
+|createGoal     |/goals/         |POST   | creates new goal                 |
+|indexUserGoals |/goals/         |GET    | shows all of that users goals    |
+|showGoal       |/goals/:goalId/ |GET    | shows a specific goal            |
+|updateGoal     |/goals/:goalId/ |PATCH  | updates a goal                   | 
+|deleteGoal     |/goals/:goalId/ |DELETE | deletes a goal                   | 
+
+#
 
 ## Styling
 
