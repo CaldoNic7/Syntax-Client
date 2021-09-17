@@ -10,8 +10,6 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-import Dashboard from './components/dashboard/dashboard'
-import CreateGoal from './components/goal/CreateGoal'
 
 class App extends Component {
   constructor (props) {
@@ -46,8 +44,8 @@ class App extends Component {
 
     return (
       <Fragment>
-        <Header user={user} />
-        {msgAlerts.map((msgAlert) => (
+	      <Header user={user} />
+	      {msgAlerts.map((msgAlert) => (
           <AutoDismissAlert
             key={msgAlert.id}
             heading={msgAlert.heading}
@@ -57,22 +55,22 @@ class App extends Component {
             deleteAlert={this.deleteAlert}
           />
         ))}
-        <main className='container'>
-          <Route
-            path='/sign-up/'
+	      <main className='container'>
+	        <Route
+            path='/sign-up'
             render={() => (
               <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
             )}
           />
           <Route
-            path='/sign-in/'
+            path='/sign-in'
             render={() => (
               <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
             )}
           />
           <AuthenticatedRoute
             user={user}
-            path='/sign-out/'
+            path='/sign-out'
             render={() => (
               <SignOut
                 msgAlert={this.msgAlert}
@@ -83,22 +81,10 @@ class App extends Component {
           />
           <AuthenticatedRoute
             user={user}
-            path='/change-pw/'
+            path='/change-password'
             render={() => (
               <ChangePassword msgAlert={this.msgAlert} user={user} />
             )}
-          />
-          <AuthenticatedRoute
-            user={user}
-            path='/'
-            exact
-            render={() => <Dashboard msgAlert={this.msgAlert} user={user} />}
-          />
-          <AuthenticatedRoute
-            user={user}
-            path='/goal-create/'
-            exact
-            render={() => <CreateGoal msgAlert={this.msgAlert} user={user} />}
           />
         </main>
       </Fragment>
