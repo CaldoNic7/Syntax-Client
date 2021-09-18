@@ -27,7 +27,6 @@ handleChange = (event) =>
 
 onSignUp = (event) => {
   event.preventDefault()
-  console.log('wtf is going on', event, this.state)
   const { msgAlert, history, setUser } = this.props
 
   signUp(this.state)
