@@ -6,6 +6,7 @@ import { v4 as uuid } from 'uuid'
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/Header/Header'
+import Landing from './components/landingPage/landing_page'
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
@@ -60,13 +61,26 @@ class App extends Component {
           <Route
             path='/sign-up'
             render={() => (
-              <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
+              <>
+                <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
+                <Landing/>
+              </>
             )}
           />
           <Route
             path='/sign-in'
             render={() => (
-              <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+              <>
+                <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+                <Landing />
+              </>
+            )}
+          />
+          <Route
+            path='/'
+            exact
+            render={() => (
+              <Landing/>
             )}
           />
           <AuthenticatedRoute
@@ -89,7 +103,7 @@ class App extends Component {
           />
           <AuthenticatedRoute
             user={user}
-            path='/'
+            path='/dashboard'
             render={() => (
               <Dashboard msgAlert={this.msgAlert} user={user} />
             )}

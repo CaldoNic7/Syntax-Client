@@ -5,7 +5,9 @@ import { signIn } from '../../api/auth'
 import { signInSuccess, signInFailure } from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import { Button, Card } from 'react-bootstrap'
+
+import { signInCard, signInTitle } from './auth_styles'
 
 class SignIn extends Component {
   constructor (props) {
@@ -36,7 +38,7 @@ onSignIn = (event) => {
         variant: 'success'
       })
     )
-    .then(() => history.push('/'))
+    .then(() => history.push('/dashboard'))
     .catch((error) => {
       this.setState({ email: '', password: '' })
       msgAlert({
@@ -51,36 +53,38 @@ render () {
   const { email, password } = this.state
 
   return (
-    <div className='row'>
-      <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-        <h3>Sign In</h3>
-        <Form onSubmit={this.onSignIn}>
-          <Form.Group controlId='email'>
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              required
-              type='email'
-              name='email'
-              value={email}
-              placeholder='Enter email'
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId='password'>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              required
-              name='password'
-              value={password}
-              type='password'
-              placeholder='Password'
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Button variant='primary' type='submit'>Submit</Button>
-        </Form>
+    <Card style={ signInCard }>
+      <div className='row'>
+        <div className='col-sm-10 col-md-8 mx-auto mt-5'>
+          <h3 style={ signInTitle }>Sign In</h3>
+          <Form onSubmit={this.onSignIn}>
+            <Form.Group controlId='email'>
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                required
+                type='email'
+                name='email'
+                value={email}
+                placeholder='Enter email'
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId='password'>
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                required
+                name='password'
+                value={password}
+                type='password'
+                placeholder='Password'
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Button variant='primary' type='submit'>Submit</Button>
+          </Form>
+        </div>
       </div>
-    </div>
+    </Card>
   )
 }
 }

@@ -80,35 +80,31 @@ Here are some of the things I plan to tackle as I continue to work on developing
 ## Wire Frames
 ### Home when a user is not signed in
 
-![Home when a user is not signed in](public/images/signed-out-home.png)
+![Home when a user is not signed in](public/images/1-signed-out-home.png)
 
 ### Sign-Up
 
-![Sign-Up](public/images/signn-up.png)
+![Sign-Up](public/images/2-sign-up.png)
 
 ### Sign-In
 
-![Sign-in](public/images/sign-in.png)
+![Sign-in](public/images/3-sign-in.png)
 
-### Home or Dashboard the first time a user signs in (Create first goal)
+### Home or Dashboard for a signed-in user
 
-![Home the first time a user signs in](public/images/signed-in-new-user-home.png)
-
-### Home or Dashboard for a sign-in user
-
-![Home or Dashboard](public/images/signed-in-home.png)
+![Home or Dashboard](public/images/4-dashboard.png)
 
 ### Create an additional goal
 
-![Create an additional Goal](public/images/create-additional-goal.png)
+![Create an additional Goal](public/images/5-create-new-goal.png)
 
 ### Update or Delete a goal
 
-![Update and Delete a Goal](public/images/edit-delete-existing-goal.png)
+![Update and Delete a Goal](public/images/6-update-goal.png)
 
 ### Profile Settings (including change password)
 
-![Profile Settings](public/images/profile.png)
+![Profile Settings](public/images/7-profile.png)
 
 #
 
@@ -140,28 +136,28 @@ Goal Routes
 
 ### Colors:
 
-background1:  Dark Grey
+background1:  (Darkest)
 ```
-#303841 
-rgba(48, 56, 65, 1)
+#2B4450
+rgba(43, 68, 80, 1)
 ```
-background2: Slightly Lighter Grey (greenish)
+background2: (dark)
 ```
-#3A4750
-rgba(58, 71, 80, 1)
+#497285
+rgba(73, 114, 133, 1)
 
 ```
-background3: White
+background3: (white)
 ```
 #FFFFFF
 rgba(255, 255, 255, 1)
 ```
-accent1: Yellowish
+accent1: (light)
 ```
-#F6C90E
-rgba(246, 201, 14, 1)
+#DFEBED
+rgba(223, 235, 237, 1)
 ```
-accent2: Pinkish
+accent2: (orange)
 ```
-#F64E8B
-rgba(246, 78, 139, 1)
+#F78536
+rgba(247, 133, 54, 1)
