@@ -192,7 +192,7 @@ class Dashboard extends React.Component {
         {/* <h1>display language icons here</h1> */}
         <Card>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-            <Button style={{ margin: '5px' }} onClick={() => this.props.history.push('/goal-create/')}>Set Goal</Button>
+            <Button style={{ margin: '5px' }} onClick={() => this.props.history.push('/create-goal/')}>Set Goal</Button>
             <Button style={{ margin: '5px' }} onClick={() => this.props.history.push('/change-pw/')}>Change Password</Button>
             <Button style={{ margin: '5px' }} onClick={() => this.props.history.push('/sign-out/')}>Sign Out</Button>
           </div>
