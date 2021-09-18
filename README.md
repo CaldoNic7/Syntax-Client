@@ -6,6 +6,8 @@
 
 Don't believe me? Give it a try HERE. Simply sign up (using a fake email is recommended), create a goal, then start practicing to see how fast you can level up and achieve your goals.
 
+![Home or Dashboard](public/images/screenshot.png)
+
 #
 
 If you are interested in seeing how I created this app you can check out the code for my front end client [HERE](https://github.com/CaldoNic7/Syntax-Client/tree/dev) or my back end API [HERE](https://syntax-typing-practice.herokuapp.com/) and it's corresponding git hub repo [HERE](https://github.com/CaldoNic7/Syntax-back-end). Please leave a comment and let me know what you think!
