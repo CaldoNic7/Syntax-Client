@@ -33,7 +33,7 @@ export const signOut = (user) => {
     url: apiUrl + '/sign-out/',
     method: 'DELETE',
     headers: {
-      Authorization: `Token ${user.token}`
+      Authorization: `TOKEN ${user.token}`
     }
   })
 }
@@ -43,7 +43,7 @@ export const changePassword = (passwords, user) => {
     url: apiUrl + '/change-pw/',
     method: 'PATCH',
     headers: {
-      Authorization: `Token ${user.token}`
+      Authorization: `TOKEN ${user.token}`
     },
     data: {
       passwords: {

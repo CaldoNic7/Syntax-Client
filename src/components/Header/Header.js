@@ -5,7 +5,7 @@ import { Link, NavLink } from 'react-router-dom'
 
 const authenticatedOptions = (
   <Fragment>
-    <NavLink to='/change-password' className='nav-link'>Change Password</NavLink>
+    {/* <NavLink to='/change-password' className='nav-link'>Change Password</NavLink> */}
     <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
   </Fragment>
 )
@@ -17,11 +17,11 @@ const unauthenticatedOptions = (
   </Fragment>
 )
 
-const alwaysOptions = (
-  <Fragment>
-    <NavLink exact to='/' className='nav-link'>Home</NavLink>
-  </Fragment>
-)
+// const alwaysOptions = (
+//   <Fragment>
+//     <NavLink exact to='/' className='nav-link'>Home</NavLink>
+//   </Fragment>
+// )
 
 const Header = ({ user }) => (
   <Navbar bg='primary' variant='dark' expand='md'>
@@ -31,10 +31,7 @@ const Header = ({ user }) => (
     <Navbar.Toggle aria-controls='basic-navbar-nav' />
     <Navbar.Collapse id='basic-navbar-nav'>
       <Nav className='ml-auto'>
-        {user && (
-          <span className='navbar-text mr-2'>Welcome, {user.email}</span>
-        )}
-        {alwaysOptions}
+        {/* {alwaysOptions} */}
         {user ? authenticatedOptions : unauthenticatedOptions}
       </Nav>
     </Navbar.Collapse>

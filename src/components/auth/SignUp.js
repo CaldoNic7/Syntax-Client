@@ -25,7 +25,7 @@ handleChange = (event) =>
 
 onSignUp = (event) => {
   event.preventDefault()
-
+  console.log('wtf is going on', event, this.state)
   const { msgAlert, history, setUser } = this.props
 
   signUp(this.state)
@@ -40,7 +40,7 @@ onSignUp = (event) => {
     )
     .then(() => history.push('/'))
     .catch((error) => {
-      this.setState({ email: '', password: '', passwordConfirmation: '' })
+      this.setState({ email: '', password: '', password_confirmation: '' })
       msgAlert({
         heading: 'Sign Up Failed with error: ' + error.message,
         message: signUpFailure,
