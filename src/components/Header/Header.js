@@ -6,8 +6,9 @@ import { logo } from './header_styles'
 
 const authenticatedOptions = (
   <Fragment>
-    {/* <NavLink to='/change-password' className='nav-link'>Change Password</NavLink> */}
-    <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
+    <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+      <NavLink to='/sign-out' className='nav-link' style={{ justifySelf: 'flex-end' }}>Sign Out</NavLink>
+    </div>
   </Fragment>
 )
 
@@ -18,12 +19,6 @@ const unauthenticatedOptions = (
   </Fragment>
 )
 
-// const alwaysOptions = (
-//   <Fragment>
-//     <NavLink exact to='/' className='nav-link'>Home</NavLink>
-//   </Fragment>
-// )
-
 const Header = ({ user }) => (
   <Navbar fixed='bottom' bg='dark' variant='dark' expand='md'>
     <Navbar.Brand>
@@ -31,8 +26,7 @@ const Header = ({ user }) => (
     </Navbar.Brand>
     <Navbar.Toggle aria-controls='basic-navbar-nav' />
     <Navbar.Collapse id='basic-navbar-nav'>
-      <Nav className='ml-auto'>
-        {/* {alwaysOptions} */}
+      <Nav className='ml-auto' style={{ width: '100%', display: 'flex' }}>
         {user ? authenticatedOptions : unauthenticatedOptions}
       </Nav>
     </Navbar.Collapse>
