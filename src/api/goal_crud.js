@@ -4,7 +4,7 @@ import axios from 'axios'
 export const createGoal = (user, goalData) => {
   return axios({
     method: 'POST',
-    url: apiUrl + '/goals',
+    url: apiUrl + '/goals/',
     headers: {
       Authorization: `TOKEN ${user.token}`
     },

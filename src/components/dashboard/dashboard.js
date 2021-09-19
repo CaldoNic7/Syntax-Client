@@ -7,6 +7,9 @@ import moment from 'moment'
 import { Button, Card } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 
+import { goalForm, nameGroup, charGroup, langGroup, dateGroup, timeGroup, measureGroup, freqGroup, goalPara } from './../goal/create_goal_styles'
+import { container, goalStatCard, navCard, navCardButtons, updateGoalCard, updateGoalContainer } from './dashboard_styles'
+
 class Dashboard extends React.Component {
   constructor (props) {
     super(props)
@@ -93,82 +96,91 @@ class Dashboard extends React.Component {
     let updateGoalJsx
     const goalsArray = []
     if (goals.length === 0) {
-      goalsJsx = <p> No Goals Set</p>
+      this.props.history.push('/create-goal')
     } else {
       goals.forEach(goal => {
         goalsArray.push(goal)
         if (this.state.goalToUpdate !== null && goal.id === this.state.goalToUpdate.id) {
           goalsArray.pop(goal)
-          const { name, characters, language, date, time, measurement, frequency } = this.state.goalToUpdate
+          const { name, characters, date, time } = this.state.goalToUpdate
           updateGoalJsx = (
-            <Card>
-              <Form onSubmit={this.handleSubmit}>
-                <Form.Group controlId='name' style={{ marginTop: '9px' }}>
+            <Card style={ updateGoalCard }>
+              <Form style={ goalForm }onSubmit={this.handleSubmit}>
+                <h4> { <Form.Group controlId='name' style={nameGroup}>
                   <Form.Control
                     required
                     name='name'
                     value={name}
                     onChange={this.handleChange}
                   />
-                </Form.Group>
-                <Form.Group controlId='characters' style={{ marginTop: '9px' }}>
-                  <p>I want to type </p>
-                  <Form.Control
-                    required
-                    name='characters'
-                    value={characters}
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-                <Form.Group controlId='language' style={{ marginTop: '9px' }}>
-                  <p> words per minute in</p>
-                  <Form.Control
-                    required
-                    name='language'
-                    value={language}
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-                <Form.Group controlId='date' style={{ marginTop: '9px' }}>
-                  <p>, by</p>
-                  <Form.Control
-                    required
-                    name='date'
-                    value={date}
-                    onChange={this.handleChange}
-                  /><p>.</p>
-                </Form.Group>
-                <Form.Group controlId='time' style={{ marginTop: '9px' }}>
-                  <p>I will achieve this goal by practicing</p>
-                  <Form.Control
-                    required
-                    name='time'
-                    value={time}
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-                <Form.Group
-                  controlId='measurement' style={{ marginTop: '6px', marginBottom: '5px' }}>
-                  <Form.Control
-                    required
-                    name='measurement'
-                    value={measurement}
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-                <Form.Group
-                  controlId='frequency' style={{ marginTop: '6px', marginBottom: '5px' }}>
-                  <p>every</p>
-                  <Form.Control
-                    required
-                    name='frequency'
-                    value={frequency}
-                    onChange={this.handleChange}
-                  /><p>.</p>
-                </Form.Group>
+                </Form.Group> } </h4>
+                <p style={goalPara}> I want to type
+                  { <Form.Group controlId='characters' style={charGroup}>
+                    <Form.Control type="number"
+                      className="form-control"
+                      name='characters'
+                      defaultValue={ characters }
+                      min={ 0 }
+                      max={ 200 }
+                      step={ 1 }
+                      precision={ 0 }
+                      onChange={this.handleChange}
+                    />
+                  </Form.Group> } characters per minute in { <Form.Group controlId='language' style={ langGroup }>
+                    <Form.Control as="select" required name='language' onChange={this.handleChange}>
+                      <option>Select Coding Language</option>
+                      <option value="JavaScript">JavaScript</option>
+                      <option value="Python">Python</option>
+                      <option value="HTML">HTML</option>
+                      <option value="CSS">CSS</option>
+                    </Form.Control>
+                  </Form.Group> } by { <Form.Group controlId='date' style={ dateGroup }>
+                    <Form.Control type="date" name="date" defaultValue={ date } onChange={this.handleChange}/>
+                  </Form.Group> }. I will achieve this goal by practicing { <Form.Group controlId='time' style={ timeGroup }>
+                    <Form.Control type="number"
+                      className="form-control"
+                      name='time'
+                      defaultValue={ time }
+                      min={ 10 }
+                      max={ 120 }
+                      step={ 1 }
+                      precision={ 0 }
+                      onChange={this.handleChange}
+                    />
+                  </Form.Group> } { <Form.Group
+                    controlId='measurement' style={ measureGroup }>
+                    <Form.Control
+                      as='select'
+                      required
+                      name='measurement'
+                      onChange={this.handleChange}>
+                      <option>Select Unit of Measure</option>
+                      <option value='minute(s)'>{ 'minute(s)' }</option>
+                      <option value='hour(s)'>{ 'hours(s)' }</option>
+                      <option value='day(s)'>{ 'days(s)' }</option>
+                    </Form.Control>
+                  </Form.Group> } every { <Form.Group
+                    controlId='frequency' style={ freqGroup }>
+                    <Form.Control
+                      as='select'
+                      required
+                      name='frequency'
+                      onChange={this.handleChange}>
+                      <option>Select Frequency</option>
+                      <option value='day'>{ 'day' }</option>
+                      <option value='week'>{ 'week' }</option>
+                      <option value='month'>{ 'month' }</option>
+                    </Form.Control>
+                  </Form.Group> } </p>
                 <div style={{ marginLeft: '12px' }}>
-                  <Button type='submit' style={{ marginTop: '11px' }}>Submit</Button>
-                  <Button onClick={() => this.delete(goal.id)} style={{ marginRight: '6px' }}>Delete</Button>
+                  <Button
+                    type='submit'
+                    style={{ margin: '11px' }}>Submit
+                  </Button>
+                  <Button
+                    onClick={() => this.delete(goal.id)}
+                    style={{ margin: '11px' }}>Delete
+                  </Button>
                 </div>
               </Form>
             </Card>
@@ -176,7 +188,7 @@ class Dashboard extends React.Component {
         }
       })
       goalsJsx = goalsArray.map((goal) => (
-        <Card key={goal.id} onClick={() => this.show(goal)}>
+        <Card style={ goalStatCard } key={goal.id} onClick={() => this.show(goal)}>
           <Card.Body>
             <div className="d-flex justify-content-between">
               <Card.Title>{goal.name}: {goal.language}</Card.Title>
@@ -190,16 +202,18 @@ class Dashboard extends React.Component {
     return (
       <>
         {/* <h1>display language icons here</h1> */}
-        <Card>
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-            <Button style={{ margin: '5px' }} onClick={() => this.props.history.push('/create-goal/')}>Set Goal</Button>
-            <Button style={{ margin: '5px' }} onClick={() => this.props.history.push('/change-pw/')}>Change Password</Button>
-            <Button style={{ margin: '5px' }} onClick={() => this.props.history.push('/sign-out/')}>Sign Out</Button>
+        <Card style={ navCard }>
+          <div >
+            <Button style={navCardButtons} onClick={() => this.props.history.push('/create-goal/')}>Set Goal</Button>
+            <Button style={navCardButtons} onClick={() => this.props.history.push('/change-pw/')}>Change Password</Button>
+            <Button style={navCardButtons} onClick={() => this.props.history.push('/sign-out/')}>Sign Out</Button>
           </div>
         </Card>
-        <div>
-          {updateGoalJsx}
-          {goalsJsx}
+        <div style={updateGoalContainer}>
+          <div >{updateGoalJsx}</div>
+        </div>
+        <div style={container}>
+          <div>{goalsJsx}</div>
         </div>
       </>
     )
