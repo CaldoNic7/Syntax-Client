@@ -41,7 +41,7 @@ onSignUp = (event) => {
     )
     .then(() => history.push('/dashboard'))
     .catch((error) => {
-      this.setState({ email: '', password: '', password_confirmation: '' })
+      this.setState({ email: '', password: '', passwordConfirmation: '' })
       msgAlert({
         heading: 'Sign Up Failed with error: ' + error.message,
         message: signUpFailure,
