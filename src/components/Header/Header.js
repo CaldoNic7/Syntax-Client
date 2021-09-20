@@ -2,20 +2,20 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link, NavLink } from 'react-router-dom'
-import { logo } from './header_styles'
+import { logo, signOutLink, signUpLink, signInLink } from './header_styles'
 
 const authenticatedOptions = (
   <Fragment>
     <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
-      <NavLink to='/sign-out' className='nav-link' style={{ justifySelf: 'flex-end' }}>Sign Out</NavLink>
+      <NavLink to='/sign-out' className='nav-link' style={signOutLink}>Sign Out</NavLink>
     </div>
   </Fragment>
 )
 
 const unauthenticatedOptions = (
   <Fragment>
-    <NavLink to='/sign-up' className='nav-link'>Sign Up</NavLink>
-    <NavLink to='/sign-in' className='nav-link'>Sign In</NavLink>
+    <NavLink to='/sign-up' className='nav-link' style={signUpLink}>Sign Up</NavLink>
+    <NavLink to='/sign-in' className='nav-link' style={signInLink}>Sign In</NavLink>
   </Fragment>
 )
 

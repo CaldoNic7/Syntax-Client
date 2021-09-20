@@ -7,15 +7,16 @@ export const aboutApp = {
   flexDirection: 'column',
   alignItems: 'center',
   textAlign: 'center',
-  maxWidth: '700px'
+  maxWidth: '800px'
 }
 
 export const appTitle = {
-  fontSize: '72px',
-  color: 'rgba(247, 133, 54, 1)'
+  fontSize: '110px',
+  color: 'rgba(247, 133, 54, 1)',
+  fontWeight: 'bold'
 }
 
 export const appDescription = {
-  fontSize: '24px',
+  fontSize: '32px',
   color: '#FFFFFF'
 }

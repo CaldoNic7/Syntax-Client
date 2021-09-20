@@ -90,3 +90,7 @@ export const goalPara = {
   // maxWidth: '90%',
   paddingLeft: '55px'
 }
+
+export const input = {
+  textAlign: 'center'
+}

@@ -5,7 +5,7 @@ import { createGoal } from '../../api/goal_crud'
 // import Form from 'react-bootstrap/Form'
 import Form from 'react-bootstrap/Form'
 import { Button, Card } from 'react-bootstrap'
-import { goalCard, goalTitle, goalForm, nameGroup, charGroup, langGroup, dateGroup, timeGroup, measureGroup, freqGroup, goalPara } from './create_goal_styles'
+import { goalCard, goalTitle, goalForm, nameGroup, charGroup, langGroup, dateGroup, timeGroup, measureGroup, freqGroup, goalPara, input } from './create_goal_styles'
 
 class CreateGoal extends React.Component {
   constructor (props) {
@@ -53,6 +53,7 @@ class CreateGoal extends React.Component {
           <Form style={ goalForm }onSubmit={this.handleSubmit}>
             <h4> { <Form.Group controlId='name' style={nameGroup}>
               <Form.Control
+                style={input}
                 required
                 name='name'
                 value={name}
@@ -61,7 +62,9 @@ class CreateGoal extends React.Component {
             </Form.Group> } </h4>
             <p style={goalPara}> I want to type
               { <Form.Group controlId='characters' style={charGroup}>
-                <Form.Control type="number"
+                <Form.Control
+                  style={input}
+                  type="number"
                   className="form-control"
                   name='characters'
                   defaultValue={ characters }
@@ -72,7 +75,13 @@ class CreateGoal extends React.Component {
                   onChange={this.handleChange}
                 />
               </Form.Group> } characters per minute in { <Form.Group controlId='language' style={ langGroup }>
-                <Form.Control as="select" required name='language' onChange={this.handleChange}>
+                <Form.Control
+                  style={input}
+                  as="select"
+                  required
+                  name='language'
+                  onChange={this.handleChange}
+                >
                   <option>Select Coding Language</option>
                   <option value="JavaScript">JavaScript</option>
                   <option value="Python">Python</option>
@@ -80,9 +89,16 @@ class CreateGoal extends React.Component {
                   <option value="CSS">CSS</option>
                 </Form.Control>
               </Form.Group> } by { <Form.Group controlId='date' style={ dateGroup }>
-                <Form.Control type="date" name="date" defaultValue={ date } onChange={this.handleChange}/>
+                <Form.Control
+                  style={input}
+                  type="date"
+                  name="date"
+                  defaultValue={ date }
+                  onChange={this.handleChange}/>
               </Form.Group> } I will achieve this goal by practicing { <Form.Group controlId='time' style={ timeGroup }>
-                <Form.Control type="number"
+                <Form.Control
+                  style={input}
+                  type="number"
                   className="form-control"
                   name='time'
                   defaultValue={ time }
@@ -95,6 +111,7 @@ class CreateGoal extends React.Component {
               </Form.Group> } { <Form.Group
                 controlId='measurement' style={ measureGroup }>
                 <Form.Control
+                  style={input}
                   as='select'
                   required
                   name='measurement'
@@ -107,6 +124,7 @@ class CreateGoal extends React.Component {
               </Form.Group> } every { <Form.Group
                 controlId='frequency' style={ freqGroup }>
                 <Form.Control
+                  style={input}
                   as='select'
                   required
                   name='frequency'
