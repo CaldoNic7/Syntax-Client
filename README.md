@@ -10,7 +10,7 @@ Don't believe me? Give it a try [HERE](https://caldonic7.github.io/Syntax-Client
 
 #
 
-If you are interested in seeing how I created this app you can check out the code for my front end client [HERE](https://github.com/CaldoNic7/Syntax-Client) or my back end API [HERE](https://syntax-typing-practice.herokuapp.com/) and it's corresponding git hub repo [HERE](https://github.com/CaldoNic7/Syntax-back-end).
+If you are interested in seeing how I created this app you can check out the code for my [front end repo](https://github.com/CaldoNic7/Syntax-Client) or my back end [API](https://syntax-typing-practice.herokuapp.com/) and it's corresponding [git hub repo](https://github.com/CaldoNic7/Syntax-back-end).
 
 #
 ## Technologies
