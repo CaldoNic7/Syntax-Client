@@ -53,7 +53,7 @@ render () {
   const { email, password } = this.state
 
   return (
-    <Card style={ signInCard }>
+    <Card style={ signInCard } className='signInCard'>
       <div className='row'>
         <div className='col-sm-10 col-md-8 mx-auto mt-5'>
           <h3 style={ signInTitle }>Sign In</h3>

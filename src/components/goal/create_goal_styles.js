@@ -7,10 +7,6 @@ export const goalTitle = {
 }
 
 export const goalCard = {
-  // position: 'fixed',
-  // top: '50%',
-  // left: '50%',
-  // transform: 'translate(-50%, -50%)',
   margin: '25px auto',
   display: 'flex',
   flexWrap: 'wrap',
@@ -48,10 +44,11 @@ export const charGroup = {
 }
 
 export const langGroup = {
-  marginBottom: '17px',
-  marginTop: '-7px',
-  marginLeft: '7px',
-  marginRight: '7px'
+  margin: '-7px 7px 17px 7px'
+  // marginBottom: '17px',
+  // marginTop: '-7px',
+  // marginLeft: '7px',
+  // marginRight: '7px'
 }
 
 export const dateGroup = {

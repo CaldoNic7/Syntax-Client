@@ -14,7 +14,7 @@ class CreateGoal extends React.Component {
       goal: {
         name: 'Goal 1',
         characters: '77',
-        language: 'Clingon',
+        language: 'Klingon',
         date: '2022-05-05',
         time: '30',
         measurement: 'min',
@@ -35,7 +35,6 @@ class CreateGoal extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log(this.state.goal)
     const { user, msgAlert, history } = this.props
     createGoal(user, this.state.goal)
       .then(res => history.push('/dashboard'))

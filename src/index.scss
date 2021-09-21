@@ -28,3 +28,40 @@ body {
 .navbar {
   padding: 0;
 }
+
+.title {
+  font-size: 5rem;
+  text-align: center;
+  color: rgba(247, 133, 54, 1);
+  font-weight: bold;
+}
+.description {
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+@media (max-width: 1400px) { 
+  .signUpCard,
+  .signInCard {
+    z-index: 2;
+  }
+  .title {
+  font-size: 3rem;
+  }
+} 
+
+@media (max-width: 800px) { 
+  .signUpCard,
+  .signInCard {
+    z-index: 2;
+  }
+  .title {
+  font-size: 3rem;
+  text-align: justify;
+  }
+
+  .description {
+    display: none;
+  }
+} 

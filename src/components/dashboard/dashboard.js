@@ -1,25 +1,25 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom'
 import { indexUserGoals, showGoal, updateGoal, deleteGoal } from '../../api/goal_crud'
 import moment from 'moment'
+import { ReactComponent as JsIcon } from './JsIcon.svg'
+import { ReactComponent as PyIcon } from './PyIcon.svg'
+import { ReactComponent as CssIcon } from './CssIcon.svg'
+import { ReactComponent as HtmlIcon } from './HtmlIcon.svg'
+import { ReactComponent as KlingIcon } from './KlingIcon.svg'
 
-// import Form from 'react-bootstrap/Form'
-import { Button, Card } from 'react-bootstrap'
-import Form from 'react-bootstrap/Form'
+// import from 'react-bootstrap'
+import { Button, Card, Form } from 'react-bootstrap'
 
 import { goalForm, nameGroup, charGroup, langGroup, dateGroup, timeGroup, measureGroup, freqGroup, goalPara, input } from './../goal/create_goal_styles'
-import { container, goalStatCard, languageCard, navCard, navCardButtons, updateGoalCard, updateGoalContainer } from './dashboard_styles'
+import { container, goalStatCard, languageCard, newGoalLink, updateGoalCard } from './dashboard_styles'
 
 class Dashboard extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       goals: null,
-      goalToUpdate: null,
-      javaScript: false,
-      python: false,
-      css: false,
-      html: false
+      goalToUpdate: null
     }
   }
 
@@ -90,14 +90,51 @@ class Dashboard extends React.Component {
     return moment(dueDate).endOf('day').fromNow()
   }
 
+  iconJsxSetter = (goal, languagesJsx) => {
+    const jsIconJsx = <JsIcon width='100' height='100' />
+    const pyIconJsx = <PyIcon width='100' height='100' />
+    const cssIconJsx = <CssIcon width='100' height='100' />
+    const htmlIconJsx = <HtmlIcon width='100' height='100' />
+    const klingIconJsx = <KlingIcon width='100' height='100' />
+    if (goal === 'JavaScript') {
+      languagesJsx.push(jsIconJsx)
+    } else if (goal === 'Python') {
+      languagesJsx.push(pyIconJsx)
+    } else if (goal === 'CSS') {
+      languagesJsx.push(cssIconJsx)
+    } else if (goal === 'HTML') {
+      languagesJsx.push(htmlIconJsx)
+    } else if (goal === 'Klingon') {
+      languagesJsx.push(klingIconJsx)
+    }
+  }
+  // for later version...
+  // iconJsxSetter = (goal, languages, languagesJsx) => {
+  //   const jsIconJsx = <Button style={langButton}><JsIcon width='100' height='100' /></Button>
+  //   const pyIconJsx = <Button style={langButton}><PyIcon width='100' height='100' /></Button>
+  //   const cssIconJsx = <Button style={langButton}><CssIcon width='100' height='100' /></Button>
+  //   const htmlIconJsx = <Button style={langButton}><HtmlIcon width='100' height='100' /></Button>
+  //   const klingIconJsx = <Button style={langButton}><KlingIcon width='100' height='100' /></Button>
+  //   if (goal === 'JavaScript') {
+  //     languagesJsx.push(jsIconJsx)
+  //   } else if (goal === 'Python') {
+  //     languagesJsx.push(pyIconJsx)
+  //   } else if (goal === 'CSS') {
+  //     languagesJsx.push(cssIconJsx)
+  //   } else if (goal === 'HTML') {
+  //     languagesJsx.push(htmlIconJsx)
+  //   } else if (goal === 'Klingon') {
+  //     languagesJsx.push(klingIconJsx)
+  //   }
+  // }
+
   render () {
     const { goals, goalToUpdate } = this.state
     if (goals === null) {
       return (<p>Loading...</p>)
-    } else {
-      console.log(goals)
     }
-    const iconJsx = ['Press the "set goal" button']
+    const languages = []
+    const languagesJsx = []
     let goalsJsx
     let updateGoalJsx
     const goalsArray = []
@@ -106,9 +143,13 @@ class Dashboard extends React.Component {
     } else {
       goals.forEach(goal => {
         goalsArray.push(goal)
+        if (languages.indexOf(goal.language) === -1) {
+          languages.push(goal.language)
+          this.iconJsxSetter(goal.language, languagesJsx)
+        }
         if (goalToUpdate !== null && goal.id === goalToUpdate.id) {
           goalsArray.pop(goal)
-          const { name, characters, date, time } = this.state.goalToUpdate
+          const { name, characters, language, date, time, measurement, frequency } = this.state.goalToUpdate
           updateGoalJsx = (
             <Card style={ updateGoalCard }>
               <Form style={ goalForm }onSubmit={this.handleSubmit}>
@@ -138,10 +179,11 @@ class Dashboard extends React.Component {
                   </Form.Group> } characters per minute in { <Form.Group controlId='language' style={ langGroup }>
                     <Form.Control
                       as="select"
-                      required name='language'
+                      required
+                      name='language'
                       onChange={this.handleChange}
                       style={input}>
-                      <option>Select Coding Language</option>
+                      <option>{language}</option>
                       <option value="JavaScript">JavaScript</option>
                       <option value="Python">Python</option>
                       <option value="HTML">HTML</option>
@@ -176,7 +218,7 @@ class Dashboard extends React.Component {
                       required
                       name='measurement'
                       onChange={this.handleChange}>
-                      <option>Select Unit of Measure</option>
+                      <option>{measurement}</option>
                       <option value='minute(s)'>{ 'minute(s)' }</option>
                       <option value='hour(s)'>{ 'hours(s)' }</option>
                       <option value='day(s)'>{ 'days(s)' }</option>
@@ -189,7 +231,7 @@ class Dashboard extends React.Component {
                       required
                       name='frequency'
                       onChange={this.handleChange}>
-                      <option>Select Frequency</option>
+                      <option>{ frequency }</option>
                       <option value='day'>{ 'day' }</option>
                       <option value='week'>{ 'week' }</option>
                       <option value='month'>{ 'month' }</option>
@@ -224,19 +266,9 @@ class Dashboard extends React.Component {
     return (
       <>
         <Card style={languageCard}>
-          <div>
-            <h1>{iconJsx}</h1>
-          </div>
+          {languagesJsx}
         </Card>
-        <Card style={ navCard }>
-          <div >
-            <Button style={navCardButtons} onClick={() => this.props.history.push('/create-goal/')}>Set Goal</Button>
-            <Button style={navCardButtons} onClick={() => this.props.history.push('/change-pw/')}>Profile</Button>
-          </div>
-        </Card>
-        <div style={updateGoalContainer}>
-          {/* <div >{updateGoalJsx}</div> */}
-        </div>
+        <NavLink to='/create-goal' className='nav-link' style={ newGoalLink }>+New Goal</NavLink>
         <div style={container}>
           <div >{updateGoalJsx}</div>
           <div>{goalsJsx}</div>

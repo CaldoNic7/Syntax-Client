@@ -7,7 +7,6 @@ import { changePasswordSuccess, changePasswordFailure } from '../AutoDismissAler
 import { Button, Card } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 
-import { navCard, navCardButtons } from '../dashboard/dashboard_styles'
 import { changePwCard, changePwForm, changePwFormGroup, changePwTitle } from './auth_styles'
 class ChangePassword extends Component {
   constructor (props) {
@@ -54,15 +53,8 @@ render () {
   return (
     <div className='row'>
       <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-
-        <Card style={ navCard }>
-          <div>
-            <Button style={navCardButtons} onClick={() => this.props.history.push('/dashboard')}>Dashboard</Button>
-            <Button style={navCardButtons} onClick={() => this.props.history.push('/sign-out/')}>Sign Out</Button>
-          </div>
-        </Card>
+        <h3 style={changePwTitle}>Change Password</h3>
         <Card style={changePwCard}>
-          <h3 style={changePwTitle}>Change Password</h3>
           <Form style={changePwForm} onSubmit={this.onChangePassword}>
             <Form.Group controlId='oldPassword' style={changePwFormGroup}>
               <Form.Label>Old password</Form.Label>
